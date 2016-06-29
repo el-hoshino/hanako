@@ -25,6 +25,18 @@ private extension String {
 		})
 	}
 	
+	func containsCharacterInArray(array: [String]) -> Bool {
+		
+		for character in array {
+			if self.containsString(character) {
+				return true
+			}
+		}
+		
+		return false
+		
+	}
+	
 }
 
 private extension Array {
@@ -127,6 +139,29 @@ func createRandomString() -> String {
 	} else {
 		randomString = (1 ... length).reduce("") { (string, _) -> String in
 			return string + characterList.getRandomElement()
+		}
+	}
+	
+	if length >= types.count {
+		
+		for type in types {
+			
+			let characterArray: [String]
+			switch type {
+			case .UppercasedAlphabet:
+				characterArray = uppercaseStrings
+				
+			case .LowercasedAlphabet:
+				characterArray = lowercasedStrings
+				
+			case .Numeral:
+				characterArray = numberStrings
+			}
+			
+			guard randomString.containsCharacterInArray(characterArray) else {
+				return createRandomString()
+			}
+			
 		}
 	}
 	
