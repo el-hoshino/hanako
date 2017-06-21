@@ -95,6 +95,13 @@ func printHelp() {
 	
 }
 
+func printVersion() {
+	
+	let version = "1.0.2"
+	print(version)
+	
+}
+
 func printError() {
 	
 	let errorMessage = "Invalid arguments. Please enter -h to get help.\n"
@@ -185,10 +192,20 @@ func parseCommand() {
 	let arguments = Array(CommandLine.arguments.dropFirst())
 	
 	if arguments.contains("-h") || arguments.contains("--help") {
+		
 		printHelp()
+		
 		exit(EXIT_SUCCESS)
 		
-	} else {
+	}
+	else if arguments.contains("-v") || arguments.contains("--version") {
+		
+		printVersion()
+		
+		exit(EXIT_SUCCESS)
+		
+	}
+	else {
 		var arguments = arguments
 		while let argument = arguments.first {
 			switch argument {
@@ -239,6 +256,8 @@ func parseCommand() {
 		}
 		
 		print()
+		
+		exit(EXIT_SUCCESS)
 		
 	}
 	
