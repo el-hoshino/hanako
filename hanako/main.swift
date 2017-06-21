@@ -25,10 +25,10 @@ private extension String {
 		})
 	}
 	
-	func containsCharacterInArray(array: [String]) -> Bool {
+	func containsCharacterInArray(_ array: [String]) -> Bool {
 		
 		for character in array {
-			if self.containsString(character) {
+			if self.contains(character) {
 				return true
 			}
 		}
@@ -64,12 +64,12 @@ private let numberStrings: [String] = {
 }()
 
 private enum CharacterType {
-	case UppercasedAlphabet
-	case LowercasedAlphabet
-	case Numeral
+	case uppercasedAlphabet
+	case lowercasedAlphabet
+	case numeral
 }
 
-private var types: Set<CharacterType> = [.UppercasedAlphabet, .LowercasedAlphabet, .Numeral]
+private var types: Set<CharacterType> = [.uppercasedAlphabet, .lowercasedAlphabet, .numeral]
 private var shouldCopyToPasteboard = true
 private var length = 10
 private var hyphenFrequency = 0
@@ -95,6 +95,13 @@ func printHelp() {
 	
 }
 
+func printVersion() {
+	
+	let version = "1.0.2"
+	print(version)
+	
+}
+
 func printError() {
 	
 	let errorMessage = "Invalid arguments. Please enter -h to get help.\n"
@@ -113,13 +120,13 @@ func createRandomString() -> String {
 	let characterList = types.reduce([]) { (list, type) -> [String] in
 		let nextList: [String]
 		switch type {
-		case .UppercasedAlphabet:
+		case .uppercasedAlphabet:
 			nextList = uppercaseStrings
 			
-		case .LowercasedAlphabet:
+		case .lowercasedAlphabet:
 			nextList = lowercasedStrings
 			
-		case .Numeral:
+		case .numeral:
 			nextList = numberStrings
 		}
 		return list + nextList
@@ -148,13 +155,13 @@ func createRandomString() -> String {
 			
 			let characterArray: [String]
 			switch type {
-			case .UppercasedAlphabet:
+			case .uppercasedAlphabet:
 				characterArray = uppercaseStrings
 				
-			case .LowercasedAlphabet:
+			case .lowercasedAlphabet:
 				characterArray = lowercasedStrings
 				
-			case .Numeral:
+			case .numeral:
 				characterArray = numberStrings
 			}
 			
@@ -169,9 +176,9 @@ func createRandomString() -> String {
 	
 }
 
-func copyStringToPasteboard(string: String) {
+func copyStringToPasteboard(_ string: String) {
 	
-	let board = NSPasteboard.generalPasteboard()
+	let board = NSPasteboard.general()
 	board.clearContents()
 	
 	let item = NSPasteboardItem()
@@ -182,26 +189,36 @@ func copyStringToPasteboard(string: String) {
 
 func parseCommand() {
 	
-	let arguments = Array(Process.arguments.dropFirst())
+	let arguments = Array(CommandLine.arguments.dropFirst())
 	
 	if arguments.contains("-h") || arguments.contains("--help") {
+		
 		printHelp()
+		
 		exit(EXIT_SUCCESS)
 		
-	} else {
+	}
+	else if arguments.contains("-v") || arguments.contains("--version") {
+		
+		printVersion()
+		
+		exit(EXIT_SUCCESS)
+		
+	}
+	else {
 		var arguments = arguments
 		while let argument = arguments.first {
 			switch argument {
 			case "-nu", "--no-uppercase":
-				types.remove(.UppercasedAlphabet)
+				types.remove(.uppercasedAlphabet)
 				arguments.removeFirst()
 				
 			case "-nl", "--no-lowercase":
-				types.remove(.LowercasedAlphabet)
+				types.remove(.lowercasedAlphabet)
 				arguments.removeFirst()
 				
 			case "-nn", "--no-numeral":
-				types.remove(.Numeral)
+				types.remove(.numeral)
 				arguments.removeFirst()
 				
 			case "-nc", "--no-copy":
@@ -239,6 +256,8 @@ func parseCommand() {
 		}
 		
 		print()
+		
+		exit(EXIT_SUCCESS)
 		
 	}
 	
