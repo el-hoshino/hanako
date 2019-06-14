@@ -20,7 +20,7 @@ private extension Int {
 private extension String {
 	
 	var characterArray: [String] {
-		return self.characters.map({ (c) -> String in
+		return self.map({ (c) -> String in
 			return "\(c)"
 		})
 	}
@@ -178,11 +178,11 @@ func createRandomString() -> String {
 
 func copyStringToPasteboard(_ string: String) {
 	
-	let board = NSPasteboard.general()
+	let board = NSPasteboard.general
 	board.clearContents()
 	
 	let item = NSPasteboardItem()
-	item.setString(string, forType: NSPasteboardTypeString)
+	item.setString(string, forType: .string)
 	board.writeObjects([item])
 	
 }
