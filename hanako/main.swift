@@ -97,7 +97,7 @@ func printHelp() {
 
 func printVersion() {
 	
-	let version = "1.0.2"
+	let version = "1.0.3"
 	print(version)
 	
 }
