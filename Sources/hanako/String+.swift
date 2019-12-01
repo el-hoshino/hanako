@@ -46,7 +46,7 @@ extension String {
                 nextList = Character.uppercaseCharacters
                 
             case .lowercasedAlphabet:
-                nextList = Character.lowercasedCharacters
+                nextList = Character.lowercaseCharacters
                 
             case .numeric:
                 nextList = Character.numericCharacters
@@ -54,10 +54,10 @@ extension String {
             set.formUnion(nextList)
         }
         
-        let randomString: String
+        let random: String
         if hyphenFrequency > 0 {
             let hyphenPosition = hyphenFrequency + 1
-            randomString = (1 ... length).reduce("") { (string, index) -> String in
+            random = (1 ... length).reduce("") { (string, index) -> String in
                 if index % hyphenPosition == 0 {
                     return string + "-"
                 } else {
@@ -66,7 +66,7 @@ extension String {
             }
             
         } else {
-            randomString = (1 ... length).reduce("") { (string, _) -> String in
+            random = (1 ... length).reduce("") { (string, _) -> String in
                 return string + "\(characterList.unsafeRandomElement())"
             }
         }
@@ -81,20 +81,20 @@ extension String {
                     characterSet = Character.uppercaseCharacters
                     
                 case .lowercasedAlphabet:
-                    characterSet = Character.lowercasedCharacters
+                    characterSet = Character.lowercaseCharacters
                     
                 case .numeric:
                     characterSet = Character.numericCharacters
                 }
                 
-                guard randomString.containsAnyCharacterInSet(characterSet) else {
+                guard random.containsAnyCharacterInSet(characterSet) else {
                     return randomString(ofLength: length, from: types, hyphenFrequency: hyphenFrequency)
                 }
                 
             }
         }
         
-        return randomString
+        return random
         
     }
     
