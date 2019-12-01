@@ -7,9 +7,12 @@
 
 import Foundation
 
-func printError() {
+func printError(_ error: Error) {
     
-    let errorMessage = "Invalid arguments. Please enter -h to get help.\n"
+    let errorMessage = """
+        Error: \(error)
+        Please enter -h to get help."
+        """
     print(errorMessage)
     
 }
