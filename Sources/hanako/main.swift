@@ -8,24 +8,15 @@
 
 import Cocoa
 
-private extension Int {
-	
-	static func createRandom(under limit: Int) -> Int {
-		let random = arc4random_uniform(UInt32(limit))
-		return Int(random)
-	}
-	
-}
-
 private extension String {
 	
-	var characterArray: [String] {
-		return self.map({ (c) -> String in
-			return "\(c)"
-		})
+	var characterSet: Set<Character> {
+		return reduce(into: Set<Character>()) { (result, character) in
+			result.insert(character)
+		}
 	}
 	
-	func containsCharacterInArray(_ array: [String]) -> Bool {
+	func containsAnyCharacterInSet(_ array: Set<Character>) -> Bool {
 		
 		for character in array {
 			if self.contains(character) {
@@ -39,31 +30,33 @@ private extension String {
 	
 }
 
-private extension Array {
+extension Set where Element == Character {
 	
-	func getRandomElement() -> Element {
-		let randomIndex = Int.createRandom(under: self.count)
-		return self[randomIndex]
+	func unsafeRandomElement() -> Element {
+    	return randomElement() ?? {
+	    	assertionFailure("Trying to extract random element from an empty array.")
+	    	return " "
+    	}()
 	}
 	
 }
 
-private let uppercaseStrings: [String] = {
+private let uppercaseStrings: Set<Character> = {
 	let string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	return string.characterArray
+	return string.characterSet
 }()
 
-private let lowercasedStrings: [String] = {
+private let lowercasedStrings: Set<Character> = {
 	let string = "abcdefghijklmnopqrstuvwxyz"
-	return string.characterArray
+	return string.characterSet
 }()
 
-private let numberStrings: [String] = {
+private let numberStrings: Set<Character> = {
 	let string = "0123456789"
-	return string.characterArray
+	return string.characterSet
 }()
 
-private enum CharacterType {
+enum CharacterType {
 	case uppercasedAlphabet
 	case lowercasedAlphabet
 	case numeral
@@ -109,7 +102,7 @@ func printError() {
 	
 }
 
-func createRandomString() -> String {
+func createRandomString(ofLength length: Int, from types: Set<CharacterType>, hyphenFrequency: Int) -> String {
 	
 	guard types.count > 0 else {
 		let errorMessage = "No characters able to use in random string, please check your setting.\n"
@@ -117,8 +110,8 @@ func createRandomString() -> String {
 		exit(EXIT_FAILURE)
 	}
 	
-	let characterList = types.reduce([]) { (list, type) -> [String] in
-		let nextList: [String]
+	let characterList = types.reduce(into: Set<Character>()) { (set, type) in
+		let nextList: Set<Character>
 		switch type {
 		case .uppercasedAlphabet:
 			nextList = uppercaseStrings
@@ -129,7 +122,7 @@ func createRandomString() -> String {
 		case .numeral:
 			nextList = numberStrings
 		}
-		return list + nextList
+		set.formUnion(nextList)
 	}
 	
 	let randomString: String
@@ -139,13 +132,13 @@ func createRandomString() -> String {
 			if index % hyphenPosition == 0 {
 				return string + "-"
 			} else {
-				return string + characterList.getRandomElement()
+				return string + "\(characterList.unsafeRandomElement())"
 			}
 		}
 		
 	} else {
 		randomString = (1 ... length).reduce("") { (string, _) -> String in
-			return string + characterList.getRandomElement()
+			return string + "\(characterList.unsafeRandomElement())"
 		}
 	}
 	
@@ -153,20 +146,20 @@ func createRandomString() -> String {
 		
 		for type in types {
 			
-			let characterArray: [String]
+			let characterSet: Set<Character>
 			switch type {
 			case .uppercasedAlphabet:
-				characterArray = uppercaseStrings
+				characterSet = uppercaseStrings
 				
 			case .lowercasedAlphabet:
-				characterArray = lowercasedStrings
+				characterSet = lowercasedStrings
 				
 			case .numeral:
-				characterArray = numberStrings
+				characterSet = numberStrings
 			}
 			
-			guard randomString.containsCharacterInArray(characterArray) else {
-				return createRandomString()
+			guard randomString.containsAnyCharacterInSet(characterSet) else {
+				return createRandomString(ofLength: length, from: types, hyphenFrequency: hyphenFrequency)
 			}
 			
 		}
@@ -247,7 +240,7 @@ func parseCommand() {
 			}
 		}
 		
-		let result = createRandomString()
+		let result = createRandomString(ofLength: length, from: types, hyphenFrequency: hyphenFrequency)
 		print("Generated string: \(result)")
 		
 		if shouldCopyToPasteboard {
