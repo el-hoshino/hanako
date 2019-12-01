@@ -14,7 +14,7 @@ extension Character {
         return string.characterSet
     }()
 
-    static let lowercasedCharacters: Set<Character> = {
+    static let lowercaseCharacters: Set<Character> = {
         let string = "abcdefghijklmnopqrstuvwxyz"
         return string.characterSet
     }()
