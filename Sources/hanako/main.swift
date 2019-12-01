@@ -8,17 +8,6 @@
 
 import Foundation
 
-extension Set where Element == Character {
-	
-	func unsafeRandomElement() -> Element {
-    	return randomElement() ?? {
-	    	assertionFailure("Trying to extract random element from an empty array.")
-	    	return " "
-    	}()
-	}
-	
-}
-
 private var types: Set<Character.Kind> = [.uppercasedAlphabet, .lowercasedAlphabet, .numeric]
 private var shouldCopyToPasteboard = true
 private var length = 10
