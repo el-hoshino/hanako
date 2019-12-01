@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79D6985223940DDC007E9788 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6985123940DDC007E9788 /* Help.swift */; };
+		79D6985423940E01007E9788 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6985323940E01007E9788 /* Version.swift */; };
+		79D6985C2394113C007E9788 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6985B2394113C007E9788 /* Error.swift */; };
 		BF668B04239140CD00366C4B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF668B03239140CD00366C4B /* main.swift */; };
 		OBJ_45 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* XCTestManifests.swift */; };
 		OBJ_46 /* hanakoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* hanakoTests.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79D6985123940DDC007E9788 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
+		79D6985323940E01007E9788 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		79D6985B2394113C007E9788 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		BF668B03239140CD00366C4B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_12 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* hanakoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hanakoTests.swift; sourceTree = "<group>"; };
@@ -104,6 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				BF668B03239140CD00366C4B /* main.swift */,
+				79D6985123940DDC007E9788 /* Help.swift */,
+				79D6985323940E01007E9788 /* Version.swift */,
+				79D6985B2394113C007E9788 /* Error.swift */,
 			);
 			name = hanako;
 			path = Sources/hanako;
@@ -177,7 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				79D6985223940DDC007E9788 /* Help.swift in Sources */,
+				79D6985423940E01007E9788 /* Version.swift in Sources */,
 				BF668B04239140CD00366C4B /* main.swift in Sources */,
+				79D6985C2394113C007E9788 /* Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
