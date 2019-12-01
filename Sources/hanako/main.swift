@@ -6,7 +6,7 @@
 //  Copyright © 2016年 史翔新. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 private extension String {
 	
@@ -131,17 +131,6 @@ func createRandomString(ofLength length: Int, from types: Set<CharacterType>, hy
 	}
 	
 	return randomString
-	
-}
-
-func copyStringToPasteboard(_ string: String) {
-	
-	let board = NSPasteboard.general
-	board.clearContents()
-	
-	let item = NSPasteboardItem()
-	item.setString(string, forType: .string)
-	board.writeObjects([item])
 	
 }
 

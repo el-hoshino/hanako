@@ -10,6 +10,7 @@
 		79D6985223940DDC007E9788 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6985123940DDC007E9788 /* Help.swift */; };
 		79D6985423940E01007E9788 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6985323940E01007E9788 /* Version.swift */; };
 		79D6985C2394113C007E9788 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6985B2394113C007E9788 /* Error.swift */; };
+		79D6985E23941154007E9788 /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D6985D23941154007E9788 /* Pasteboard.swift */; };
 		BF668B04239140CD00366C4B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF668B03239140CD00366C4B /* main.swift */; };
 		OBJ_45 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* XCTestManifests.swift */; };
 		OBJ_46 /* hanakoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* hanakoTests.swift */; };
@@ -30,6 +31,7 @@
 		79D6985123940DDC007E9788 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		79D6985323940E01007E9788 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		79D6985B2394113C007E9788 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		79D6985D23941154007E9788 /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		BF668B03239140CD00366C4B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_12 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* hanakoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hanakoTests.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				79D6985123940DDC007E9788 /* Help.swift */,
 				79D6985323940E01007E9788 /* Version.swift */,
 				79D6985B2394113C007E9788 /* Error.swift */,
+				79D6985D23941154007E9788 /* Pasteboard.swift */,
 			);
 			name = hanako;
 			path = Sources/hanako;
@@ -189,6 +192,7 @@
 				79D6985223940DDC007E9788 /* Help.swift in Sources */,
 				79D6985423940E01007E9788 /* Version.swift in Sources */,
 				BF668B04239140CD00366C4B /* main.swift in Sources */,
+				79D6985E23941154007E9788 /* Pasteboard.swift in Sources */,
 				79D6985C2394113C007E9788 /* Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
