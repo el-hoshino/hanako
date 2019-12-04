@@ -7,13 +7,16 @@
 
 import Cocoa
 
-func copyStringToPasteboard(_ string: String) {
+extension NSPasteboard {
     
-    let board = NSPasteboard.general
-    board.clearContents()
-    
-    let item = NSPasteboardItem()
-    item.setString(string, forType: .string)
-    board.writeObjects([item])
+    func replacePasteboardItem(with text: String) {
+        
+        clearContents()
+        
+        let item = NSPasteboardItem()
+        item.setString(text, forType: .string)
+        writeObjects([item])
+        
+    }
     
 }
