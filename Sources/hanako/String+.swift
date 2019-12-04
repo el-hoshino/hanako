@@ -31,7 +31,11 @@ extension String {
 
 extension String {
     
-    static func randomString(ofLength length: Int, from types: Set<Character.Kind>, hyphenFrequency: Int) -> String {
+    enum RandomStringGenerationError: Error {
+        case noCaharactersAvailableToUseInGeneratingRandomString
+    }
+    
+    static func randomString(ofLength length: Int, from types: Set<Character.Kind>, hyphenFrequency: Int) throws -> String {
         
         func shouldInsertHyphen(at index: Int) -> Bool {
             
@@ -43,9 +47,7 @@ extension String {
         }
         
         guard types.count > 0 else {
-            let errorMessage = "No characters able to use in random string, please check your setting.\n"
-            print(errorMessage)
-            exit(EXIT_FAILURE)
+            throw RandomStringGenerationError.noCaharactersAvailableToUseInGeneratingRandomString
         }
         
         let characterList = types.reduce(into: Set<Character>()) { (set, type) in
@@ -63,7 +65,7 @@ extension String {
         if length >= types.count {
             for type in types {
                 guard random.containsAnyCharacterInSet(type.characterSet) else {
-                    return randomString(ofLength: length, from: types, hyphenFrequency: hyphenFrequency)
+                    return try randomString(ofLength: length, from: types, hyphenFrequency: hyphenFrequency)
                 }
             }
         }

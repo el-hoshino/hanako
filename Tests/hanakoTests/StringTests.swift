@@ -38,21 +38,30 @@ final class StringTests: XCTestCase {
     
     func testRandomString() {
         
-        typealias TestCase = (length: Int, types: Set<Character.Kind>)
+        typealias TestCase = (length: Int, types: Set<Character.Kind>, shouldThrowError: Bool)
         let testCases: [TestCase] = [
-            (6, [.lowercasedAlphabet]),
-            (4, [.uppercasedAlphabet, .numeric]),
-            (9, [.numeric, .lowercasedAlphabet]),
-            (5, [.lowercasedAlphabet, .uppercasedAlphabet, .numeric]),
+            (3, [], true),
+            (6, [.lowercasedAlphabet], false),
+            (4, [.uppercasedAlphabet, .numeric], false),
+            (9, [.numeric, .lowercasedAlphabet], false),
+            (5, [.lowercasedAlphabet, .uppercasedAlphabet, .numeric], false),
         ]
         for testCase in testCases {
-            let result = String.randomString(ofLength: testCase.length, from: testCase.types, hyphenFrequency: 0)
-            XCTAssertEqual(result.count, testCase.length)
-            for type in testCase.types {
-                XCTAssertTrue(result.containsAnyCharacterInSet(type.characterSet))
-            }
-            for type in Character.Kind.all(excluding: testCase.types) {
-                XCTAssertFalse(result.containsAnyCharacterInSet(type.characterSet))
+            do {
+                let result = try String.randomString(ofLength: testCase.length, from: testCase.types, hyphenFrequency: 0)
+                XCTAssertFalse(testCase.shouldThrowError)
+                XCTAssertEqual(result.count, testCase.length)
+                for type in testCase.types {
+                    XCTAssertTrue(result.containsAnyCharacterInSet(type.characterSet))
+                }
+                for type in Character.Kind.all(excluding: testCase.types) {
+                    XCTAssertFalse(result.containsAnyCharacterInSet(type.characterSet))
+                }
+            } catch let error as String.RandomStringGenerationError {
+                XCTAssertTrue(testCase.shouldThrowError)
+                XCTAssertEqual(error, String.RandomStringGenerationError.noCaharactersAvailableToUseInGeneratingRandomString)
+            } catch {
+                fatalError()
             }
         }
         
