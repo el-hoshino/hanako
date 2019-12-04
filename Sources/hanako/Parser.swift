@@ -89,14 +89,14 @@ extension Parser {
             arguments.removeFirst()
             
         case "-l", "--length":
-            guard arguments.count > 1, let lengthParameter = Int(arguments[1]) else {
+            guard let lengthParameter = arguments.second.intValue else {
                 throw ParsingError.invalidArguments(arguments)
             }
             settings.length = lengthParameter
             arguments.removeFirst(2)
             
         case "-hf", "--hyphen-frequency":
-            guard arguments.count > 1, let frequencyParameter = Int(arguments[1]) else {
+            guard let frequencyParameter = arguments.second.intValue else {
                 throw ParsingError.invalidArguments(arguments)
             }
             settings.hyphenFrequency = frequencyParameter
@@ -106,6 +106,30 @@ extension Parser {
             throw ParsingError.invalidArguments(arguments)
         }
         
+    }
+    
+}
+
+private extension ArraySlice {
+    
+    private var validIndexRange: Range<Int> {
+        return startIndex ..< endIndex
+    }
+    
+    var second: Element? {
+        let secondIndex = index(after: startIndex)
+        guard validIndexRange.contains(secondIndex) else {
+            return nil
+        }
+        return self[secondIndex]
+    }
+    
+}
+
+private extension Optional where Wrapped == String {
+    
+    var intValue: Int? {
+        return flatMap({ Int($0) })
     }
     
 }
