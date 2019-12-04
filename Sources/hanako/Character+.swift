@@ -25,9 +25,26 @@ extension Character {
     }()
 
     enum Kind {
+        
         case uppercasedAlphabet
         case lowercasedAlphabet
         case numeric
+        
+        var characterSet: Set<Character> {
+            
+            switch self {
+            case .uppercasedAlphabet:
+                return Character.uppercaseCharacters
+                
+            case .lowercasedAlphabet:
+                return Character.lowercaseCharacters
+                
+            case .numeric:
+                return Character.numericCharacters
+            }
+            
+        }
+        
     }
     
 }
