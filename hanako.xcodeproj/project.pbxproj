@@ -18,6 +18,7 @@
 		BF668B04239140CD00366C4B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF668B03239140CD00366C4B /* main.swift */; };
 		BF8CA9072397BD2300815338 /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8CA9062397BD2300815338 /* CharacterTests.swift */; };
 		BF8CA9092397BEFA00815338 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8CA9082397BEFA00815338 /* StringTests.swift */; };
+		BF8CA90B2397C69600815338 /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8CA90A2397C69600815338 /* ParserTests.swift */; };
 		OBJ_45 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* XCTestManifests.swift */; };
 		OBJ_46 /* hanakoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* hanakoTests.swift */; };
 		OBJ_48 /* hanako.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "hanako::hanako::Product" /* hanako.framework */; };
@@ -45,6 +46,7 @@
 		BF668B03239140CD00366C4B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BF8CA9062397BD2300815338 /* CharacterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTests.swift; sourceTree = "<group>"; };
 		BF8CA9082397BEFA00815338 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
+		BF8CA90A2397C69600815338 /* ParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 		OBJ_12 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* hanakoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hanakoTests.swift; sourceTree = "<group>"; };
 		OBJ_20 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				OBJ_13 /* hanakoTests.swift */,
 				BF8CA9062397BD2300815338 /* CharacterTests.swift */,
 				BF8CA9082397BEFA00815338 /* StringTests.swift */,
+				BF8CA90A2397C69600815338 /* ParserTests.swift */,
 			);
 			name = hanakoTests;
 			path = Tests/hanakoTests;
@@ -226,6 +229,7 @@
 			files = (
 				OBJ_45 /* XCTestManifests.swift in Sources */,
 				BF8CA9072397BD2300815338 /* CharacterTests.swift in Sources */,
+				BF8CA90B2397C69600815338 /* ParserTests.swift in Sources */,
 				BF8CA9092397BEFA00815338 /* StringTests.swift in Sources */,
 				OBJ_46 /* hanakoTests.swift in Sources */,
 			);
