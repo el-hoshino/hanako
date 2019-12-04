@@ -33,6 +33,15 @@ extension String {
     
     static func randomString(ofLength length: Int, from types: Set<Character.Kind>, hyphenFrequency: Int) -> String {
         
+        func shouldInsertHyphen(at index: Int) -> Bool {
+            
+            let insertsHyphen = (hyphenFrequency > 0)
+            let hyphenPosition = hyphenFrequency + 1
+            
+            return insertsHyphen && (index % hyphenPosition == 0)
+            
+        }
+        
         guard types.count > 0 else {
             let errorMessage = "No characters able to use in random string, please check your setting.\n"
             print(errorMessage)
@@ -43,31 +52,19 @@ extension String {
             set.formUnion(type.characterSet)
         }
         
-        let random: String
-        if hyphenFrequency > 0 {
-            let hyphenPosition = hyphenFrequency + 1
-            random = (1 ... length).reduce("") { (string, index) -> String in
-                if index % hyphenPosition == 0 {
-                    return string + "-"
-                } else {
-                    return string + "\(characterList.unsafeRandomElement())"
-                }
-            }
-            
-        } else {
-            random = (1 ... length).reduce("") { (string, _) -> String in
-                return string + "\(characterList.unsafeRandomElement())"
+        let random = (1 ... length).reduce(into: "") { (result, index) in
+            if shouldInsertHyphen(at: index) {
+                result.append("-")
+            } else {
+                result.append(characterList.unsafeRandomElement())
             }
         }
         
         if length >= types.count {
-            
             for type in types {
-                
                 guard random.containsAnyCharacterInSet(type.characterSet) else {
                     return randomString(ofLength: length, from: types, hyphenFrequency: hyphenFrequency)
                 }
-                
             }
         }
         
