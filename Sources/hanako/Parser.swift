@@ -42,9 +42,9 @@ final class Parser {
             try extractNormalParsingCommand(from: &parsingArguments, into: &settings)
         }
         
-        let randomString = String.randomString(ofLength: settings.length,
-                                               from: settings.characters,
-                                               hyphenFrequency: settings.hyphenFrequency)
+        let randomString = try String.randomString(ofLength: settings.length,
+                                                   from: settings.characters,
+                                                   hyphenFrequency: settings.hyphenFrequency)
         
         return .generateString(.init(settings: settings, generatedString: randomString))
         
