@@ -40,18 +40,7 @@ extension String {
         }
         
         let characterList = types.reduce(into: Set<Character>()) { (set, type) in
-            let nextList: Set<Character>
-            switch type {
-            case .uppercasedAlphabet:
-                nextList = Character.uppercaseCharacters
-                
-            case .lowercasedAlphabet:
-                nextList = Character.lowercaseCharacters
-                
-            case .numeric:
-                nextList = Character.numericCharacters
-            }
-            set.formUnion(nextList)
+            set.formUnion(type.characterSet)
         }
         
         let random: String
@@ -75,19 +64,7 @@ extension String {
             
             for type in types {
                 
-                let characterSet: Set<Character>
-                switch type {
-                case .uppercasedAlphabet:
-                    characterSet = Character.uppercaseCharacters
-                    
-                case .lowercasedAlphabet:
-                    characterSet = Character.lowercaseCharacters
-                    
-                case .numeric:
-                    characterSet = Character.numericCharacters
-                }
-                
-                guard random.containsAnyCharacterInSet(characterSet) else {
+                guard random.containsAnyCharacterInSet(type.characterSet) else {
                     return randomString(ofLength: length, from: types, hyphenFrequency: hyphenFrequency)
                 }
                 
