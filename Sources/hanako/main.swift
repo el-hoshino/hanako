@@ -6,7 +6,7 @@
 //  Copyright © 2016年 史翔新. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 let arguments = CommandLine.arguments
 let parser = Parser()
@@ -24,7 +24,7 @@ do {
         let resultString = result.generatedString
         print("Generated string: \(resultString)")
         if result.settings.shouldCopyToPasteboard {
-            copyStringToPasteboard(resultString)
+            NSPasteboard.general.replacePasteboardItem(with: resultString)
             print("Result has been copied to your clipboard, you can use cmd + v to paste it.")
         }
     }
