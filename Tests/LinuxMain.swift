@@ -1,7 +1,7 @@
 import XCTest
 
-import hanakoTests
+import HanakoLibTests
 
 var tests = [XCTestCaseEntry]()
-tests += hanakoTests.allTests()
+tests += HanakoLibTests.allTests()
 XCTMain(tests)

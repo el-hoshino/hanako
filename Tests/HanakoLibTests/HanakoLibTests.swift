@@ -1,7 +1,7 @@
 import XCTest
-@testable import hanako
+@testable import HanakoLib
 
-final class hanakoTests: XCTestCase {
+final class HanakoLibTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
