@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import hanako
+@testable import HanakoLib
 
 private enum ParsingTestResult {
     case success(Parser.Result)
@@ -58,8 +58,12 @@ final class ParserTests: XCTestCase {
                 fatalError()
             }
         }
-                
+        
     }
+    
+    static var allTests = [
+        ("testParsing", testParsing),
+    ]
     
 }
 

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import hanako
+@testable import HanakoLib
 
 final class CharacterTests: XCTestCase {
     
@@ -29,6 +29,10 @@ final class CharacterTests: XCTestCase {
         }
                 
     }
+    
+    static var allTests = [
+        ("testCharacterSet", testCharacterSet),
+    ]
     
 }
 
