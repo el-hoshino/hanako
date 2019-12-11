@@ -7,29 +7,33 @@
 
 import Foundation
 
-final class Parser {
+public final class Parser {
     
     enum ParsingError: Error {
         case invalidArguments(ArraySlice<String>)
     }
     
-    enum Result {
-        struct RandomString {
-            struct Settings {
-                var characters: Set<Character.Kind> = [.uppercasedAlphabet, .lowercasedAlphabet, .numeric]
-                var length: Int = 10
-                var hyphenFrequency: Int = 0
-                var shouldCopyToPasteboard: Bool = true
+    public enum Result {
+        public struct RandomString {
+            public struct Settings {
+                public var characters: Set<Character.Kind> = [.uppercasedAlphabet, .lowercasedAlphabet, .numeric]
+                public var length: Int = 10
+                public var hyphenFrequency: Int = 0
+                public var shouldCopyToPasteboard: Bool = true
             }
-            let settings: Settings
-            let generatedString: String
+            public let settings: Settings
+            public let generatedString: String
         }
         case showHelp
         case showVersion
         case generateString(RandomString)
     }
     
-    func parse(_ arguments: [String]) throws -> Result {
+    public init() {
+        
+    }
+    
+    public func parse(_ arguments: [String]) throws -> Result {
         
         var parsingArguments = arguments.dropFirst()
         

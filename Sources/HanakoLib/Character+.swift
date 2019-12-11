@@ -24,7 +24,7 @@ extension Character {
         return string.characterSet
     }()
 
-    enum Kind {
+    public enum Kind {
         
         case uppercasedAlphabet
         case lowercasedAlphabet

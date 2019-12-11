@@ -7,7 +7,7 @@
 
 import Foundation
 
-func printVersion() {
+public func printVersion() {
     
     let dictionary = Bundle.main.infoDictionary ?? {
         assertionFailure("Failed to find Info.plist")

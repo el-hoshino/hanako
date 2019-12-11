@@ -7,7 +7,7 @@
 
 import Foundation
 
-func printError(_ error: Error) {
+public func printError(_ error: Error) {
     
     let errorMessage = """
         Error: \(error)

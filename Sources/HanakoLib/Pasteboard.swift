@@ -9,7 +9,7 @@ import Cocoa
 
 extension NSPasteboard {
     
-    func replacePasteboardItem(with text: String) {
+    public func replacePasteboardItem(with text: String) {
         
         clearContents()
         

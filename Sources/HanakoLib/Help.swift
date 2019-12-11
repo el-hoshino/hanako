@@ -7,7 +7,7 @@
 
 import Foundation
 
-func printHelp() {
+public func printHelp() {
     
     let help = """
     hanako is a random string generator.
