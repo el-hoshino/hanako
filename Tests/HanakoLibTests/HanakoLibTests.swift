@@ -2,13 +2,36 @@ import XCTest
 @testable import HanakoLib
 
 final class HanakoLibTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-    }
-
+    
+	func testCommandParsing() {
+        
+        let command = "hanako"
+        let arguments = command.components(separatedBy: " ")
+        let parser = Parser()
+        XCTAssertNoThrow({
+            let result = try parser.parse(arguments)
+            XCTAssertEqual(result.generatedString?.count, 10)
+        })
+        
+        		
+	}
+	
     static var allTests = [
-        ("testExample", testExample),
+        ("testCommandParsing", testCommandParsing),
     ]
+    
+}
+
+private extension Parser.Result {
+    
+    var generatedString: String? {
+        switch self {
+        case .showHelp, .showVersion:
+            return nil
+            
+        case .generateString(let result):
+            return result.generatedString
+        }
+    }
+    
 }
